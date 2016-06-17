@@ -30,6 +30,8 @@ NTSTATUS DriverEntry(
 		return status;
 	}
 
+	DriverObject->DriverUnload = ExtFSUnload;
+
 	return status;
 }
 
