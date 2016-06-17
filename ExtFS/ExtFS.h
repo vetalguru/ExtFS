@@ -21,6 +21,8 @@ ULONG DEBUG_TRACE_FLAG = 1;
 
 
 
+#define EXT_FS_DEVICE_NAME L"Ext"
+
 
 NTSTATUS DriverEntry(
 	_In_ PDRIVER_OBJECT  DriverObject,
@@ -38,6 +40,9 @@ ExtFSUnload(
 	#pragma alloc_text(INIT, DriverEntry)
 	#pragma alloc_text(PAGE, ExtFSUnload)
 #endif
+
+
+PDEVICE_OBJECT ExtFSDeviceObject;
 
 
 #endif // EXT_FS_H_4F5B28CE_34F2_4CBE_8382_6459FAD3E6AF
