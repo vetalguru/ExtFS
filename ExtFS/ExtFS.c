@@ -32,6 +32,9 @@ NTSTATUS DriverEntry(
 
 	DriverObject->DriverUnload = ExtFSUnload;
 
+	IoRegisterFileSystem(ExtFSDeviceObject);
+	ObReferenceObject(ExtFSDeviceObject);
+
 	return status;
 }
 
