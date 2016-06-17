@@ -9,7 +9,6 @@ NTSTATUS DriverEntry(
 	NTSTATUS status = STATUS_SUCCESS;
 	UNICODE_STRING deviceName;
 
-	UNREFERENCED_PARAMETER(DriverObject);
 	UNREFERENCED_PARAMETER(RegistryPath);
 
 	DBG_PRINT(PTDBG_TRACE_ROUTINES,
@@ -32,6 +31,8 @@ NTSTATUS DriverEntry(
 
 	DriverObject->DriverUnload = ExtFSUnload;
 
+	DriverObject->MajorFunction[IRP_MJ_CREATE] = ExtFSCreate;
+
 	IoRegisterFileSystem(ExtFSDeviceObject);
 	ObReferenceObject(ExtFSDeviceObject);
 
@@ -49,3 +50,23 @@ ExtFSUnload(
 	DBG_PRINT(PTDBG_TRACE_ROUTINES,
 		("ExtFS: ExtFSUnload: Entered\n"));
 }
+
+NTSTATUS
+ExtFSCreate(
+	_In_ PDEVICE_OBJECT DeviceObject,
+	_In_ PIRP           Irp
+	)
+{
+	NTSTATUS status = STATUS_SUCCESS;
+
+	UNREFERENCED_PARAMETER(DeviceObject);
+
+	DBG_PRINT(PTDBG_TRACE_ROUTINES,
+		("ExtFS: ExtFSCreate: Entered\n"));
+
+	Irp->IoStatus.Status = STATUS_SUCCESS;
+	IoCompleteRequest(Irp, IO_NO_INCREMENT);
+
+	return status;
+}
+

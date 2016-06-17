@@ -34,6 +34,12 @@ ExtFSUnload(
 	_In_ PDRIVER_OBJECT DriverObject
 	);
 
+NTSTATUS
+ExtFSCreate(
+	_In_    PDEVICE_OBJECT DeviceObject,
+	_Inout_ PIRP           Irp
+	);
+
 
 
 #ifdef ALLOC_PRAGMA
