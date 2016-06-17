@@ -12,6 +12,9 @@ NTSTATUS DriverEntry(
 	UNREFERENCED_PARAMETER(DriverObject);
 	UNREFERENCED_PARAMETER(RegistryPath);
 
+	DBG_PRINT(PTDBG_TRACE_ROUTINES,
+		("ExtFS: DriverEntry: Entered\n"));
+
 	return status;
 }
 
@@ -22,4 +25,7 @@ ExtFSUnload(
 	)
 {
 	UNREFERENCED_PARAMETER(DriverObject);
+
+	DBG_PRINT(PTDBG_TRACE_ROUTINES,
+		("ExtFS: ExtFSUnload: Entered\n"));
 }
